@@ -1,0 +1,9 @@
+﻿{
+  "name": "conciliador-atualizado",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Conciliador de extratos bancarios separado em HTML, CSS e JavaScript.",
+  "scripts": {
+    "check": "node --check assets/js/app.js"
+  }
+}
