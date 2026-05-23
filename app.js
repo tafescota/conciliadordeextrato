@@ -35,7 +35,7 @@ const CATS = [
   { name: 'Energia elétrica',     color: '#f5c842', test: /cemig|cpfl|enel|coelba|celpe|energisa|elektro|light|ampla|cosern|celg|cemar|ceal|ceron|eletroacre|\bedp\b|equatorial|neoenergia|enersul|energia\s+el[eé]trica|conta\s+luz|pgto\s+conta\s+luz|pagamento\s+conta\s+luz|conta\s+de\s+energia|internet\s+edp/i },
   { name: 'Água e esgoto',        color: '#1ba6a6', test: /sabesp|copasa|saneago|caema|cosanpa|casan|saae|embasa|caerd|agespisa|aguar|sanepar|caesb|conta\s+[aá]gua|pgto\s+conta\s+[aá]gua|[aá]gua\s+e\s+esgoto|cia\s+de\s+saneamento|cia\s+saneamento|saneamento|esgoto/i },
   { name: 'Combustível',           color: '#f5c842', test: /auto\s*posto|\bposto\b|combust[ií]v|gasolina|etanol|gas\s*station|petrol|shell|ipiranga|br\s+distribuidora|raizen|raízen/i },
-  { name: 'Alimentação',           color: '#e0a030', test: /restaurante|lanchonete|pizzaria|padaria|panificadora|pastelaria|\bcafe\b|\bcafé\b|coffee|bolos|salgados|buffet|churrascaria|hamb[uú]rger|hamburger|sorveteria/i },
+  { name: 'Alimentação / Refeição',           color: '#e0a030', test: /restaurante|lanchonete|pizzaria|padaria|panificadora|pastelaria|\bcafe\b|\bcafé\b|coffee|bolos|salgados|buffet|churrascaria|hamb[uú]rger|hamburger|sorveteria/i },
   { name: 'Uso e consumo',         color: '#8bb4f3', test: /supermercado|\\bmercado\\b|atacado|atacadista|alimentos|hortifruti|mercearia/i },
   { name: 'Fornecedor',            color: '#7b5cf0', test: /pix[.\s]*emit[.\s]*out(?:ra)?\s+if|pix[.\s]*emit[.\s]*out\s+if\s*-?\s*msm\s*d|marketplace|cef\s+matriz|sercol|\bmark\b|mobile int|sispag pag tit|cel pag tit|d[eé]b\.?\s*tit\.?\s*compe\.?\s*efeti(?:vado)?\s*d?|d[eé]b\.?\s*tit\.?\s*cobran[çc]a efetivado|d[eé]b\.?\s*t[íi]tulo cobran[çc]a|db\.?\s*tr\.?\s*c\.?\s*dif\.?\s*tit\.?\s*int\.?\s*fav\.?|pagamento de boleto|pagto boleto|pag boleto|boleto/i },
   { name: 'Honorários contábeis', color: '#2dd4a0', test: /contabil|contábil|contador|contabilidade|honorar/i },
@@ -44,23 +44,23 @@ const CATS = [
   { name: 'Investimento Ourocap',  color: '#c4881a', test: /ourocap/i },
   { name: 'Pedágio',               color: '#8bb4f3', test: /concessionaria nasce|concession[aá]ria nasce|autopista fern[aã]o dia|autopista fernao dias|epr sul de minas|ped[aá]gio|pedagio/i },
   { name: 'Combustível',           color: '#f5c842', test: /(cart[aã]o|cartao|compra|pagto).*(posto|combust[ií]vel|combustivel|gasolina|etanol|diesel)|posto.*(cart[aã]o|cartao|compra|pagto)/i },
-  { name: 'Refeições',             color: '#e0a030', test: /(cart[aã]o|cartao|compra|pagto).*(alimenta[çc][aã]o|alimentacao|refei[çc][aã]o|refeicao|restaurante|churrascaria|lanchonete|padaria|sorvete|sorveteria|bar|ifood)|(?:alimenta[çc][aã]o|alimentacao|refei[çc][aã]o|refeicao|restaurante|churrascaria|lanchonete|padaria|sorvete|sorveteria|bar|ifood).*(cart[aã]o|cartao|compra|pagto)/i },
+  { name: 'Alimentação / Refeição',             color: '#e0a030', test: /(cart[aã]o|cartao|compra|pagto).*(alimenta[çc][aã]o|alimentacao|refei[çc][aã]o|refeicao|restaurante|churrascaria|lanchonete|padaria|sorvete|sorveteria|bar|ifood)|(?:alimenta[çc][aã]o|alimentacao|refei[çc][aã]o|refeicao|restaurante|churrascaria|lanchonete|padaria|sorvete|sorveteria|bar|ifood).*(cart[aã]o|cartao|compra|pagto)/i },
   { name: 'Uso e consumo',         color: '#8bb4f3', test: /cr[.\s]*compras.*rede[_\s.]?cred|(cart[aã]o|cartao|compra|pagto).*(mercado|supermercado|atacad|mercearia)|(?:mercado|supermercado|atacad|mercearia).*(cart[aã]o|cartao|compra|pagto)/i },
   { name: 'Cartão corporativo',    color: '#e0a030', test: /cart[aã]o corporativo/i },
   { name: 'Recebimento de clientes - cartão', color: '#2dd4a0', test: /recebimento rede visa|recebimento rede mast|recebimento rede amex|recebimento rede elo|recebimento rede|recebimento stone|rede_cred|rede_deb|rede.?cred|rede.?deb|stone visa|stone mast|stone elo|infinitepay|cloudwalk|wellhub|gympass/i },
   { name: 'Plano VGBL',            color: '#2f80ed', test: /premio vgbl|premio.*vgbl|\bvgbl\b/i },
   { name: 'Fornecedor',            color: '#7b5cf0', test: /tit pag tit ulo itau|pag titulo itau|business|pag boleto int|d[eé]b\.?\s*tit\.?\s*compe efetivado|deb\.?\s*tit\.?\s*compe efetivado|debito\.?\s*tit\.?\s*compe efetivado|pix emitido outra if|d[eé]b\.?\s*pagamento de bolet|deb\.?\s*pagamento de bolet|debito\.?\s*pagamento de bolet|d[eé]b\.?\s*conv\.?\s*demais empres|deb\.?\s*conv\.?\s*demais empres|debito\.?\s*conv\.?\s*demais empres|sispag fornecedores|mobile pag tit|cheque|chq |cheque compe/i },
-  { name: 'Tarifa',                color: '#556',    test: /\btar\b|tarifa pagamento salar|teg ex gar/i },
+  { name: 'Tarifa bancária',                color: '#556',    test: /\btar\b|tarifa pagamento salar|teg ex gar/i },
   { name: 'Aplicação financeira', color: '#42d8d2', test: /bb rende|rende f[aá]cil|resgate.*cdb|cdb\s*di|aplica[çc][aã]o|aplicacao|investimento/i },
   { name: 'Rendimento de aplicação', color: '#20b8aa', test: /rendimentos?\s+rend pago aplic|rend pago aplic aut mais|rendimento de aplica/i },
   { name: 'Empréstimo / Financiamento', color: '#a36cf0', test: /parcela giro|emprestimo|empr[eé]stimo|financiamento/i },
   { name: 'Plano de saúde',        color: '#2f80ed', test: /pleno saude|pleno sa[úu]de|plano de sa[úu]de/i },
   { name: 'Fornecedor',            color: '#7b5cf0', test: /sispag fornecedores|mobile pag tit|cheque|chq |cheque compe/i },
-  { name: 'Tarifa',                color: '#556',    test: /teg ex gar/i },
+  { name: 'Tarifa bancária',                color: '#556',    test: /teg ex gar/i },
   { name: 'Tributos',              color: '#d86f45', test: /sispag tributos/i },
   { name: 'Taxas e tributos prefeitura', color: '#d86f45', test: /d[eé]b\.?conv\.?prefeitura|prefeitura|municipio|munic[ií]pio|iptu|alvar[aá]|taxa.*pref|tributo.*pref/i },
   { name: 'Água e esgoto',        color: '#1ba6a6', test: /d[eé]b\.?conv\.?saneamento|saneamento|saae|sabesp|copasa|cedae|caesb|embasa|[aá]gua|agua|esgoto/i },
-  { name: 'Tributos federais',    color: '#cc2020', test: /d[eé]b\.?conv\.?tributos federais|tributos federais|receita federal|\brfb\b|arrecada[çc][aã]o federal/i },
+  { name: 'Tributos',    color: '#cc2020', test: /d[eé]b\.?conv\.?tributos federais|tributos federais|receita federal|\brfb\b|arrecada[çc][aã]o federal/i },
   { name: 'INSS / GPS',           color: '#e07040', test: /\binss\b|gps |guia.?prev/i },
   { name: 'FGTS',                 color: '#c4881a', test: /\bfgts\b/i },
   { name: 'IRRF',                 color: '#9a6010', test: /\birrf\b/i },
@@ -80,8 +80,8 @@ const CATS = [
   { name: 'Seguros',              color: '#888',    test: /seguro/i },
   { name: 'Tarifa bancária',      color: '#556',    test: /tarifa|pacote.?serv|débito.?pacote/i },
   { name: 'IOF',                  color: '#445',    test: /\biof\b/i },
-  { name: 'Juros e comissões bancárias', color: '#778', test: /juros\s+limite\s+da\s+conta|comiss(?:ao|ão|oes|ões)\s+banc/i },
-  { name: 'Juros / Encargos',     color: '#778',    test: /comiss(?:ao|ão)\s+recurso\s+nao\s+disp|comiss(?:ao|ão)\s+recurso|juros|encargo|\bmulta\b|\bmora\b/i },
+  { name: 'Juros / Encargos bancários', color: '#778', test: /juros\s+limite\s+da\s+conta|comiss(?:ao|ão|oes|ões)\s+banc/i },
+  { name: 'Juros / Encargos bancários',     color: '#778',    test: /comiss(?:ao|ão)\s+recurso\s+nao\s+disp|comiss(?:ao|ão)\s+recurso|juros|encargo|\bmulta\b|\bmora\b/i },
   { name: 'Recebimento de clientes - cartão', color: '#2dd4a0', test: /rede_cred|rede_deb|rede.?cred|rede.?deb|recebimento (rede|stone)|stone visa|stone mast|stone elo|infinitepay|cloudwalk|wellhub|gympass/i },
 ];
 
@@ -109,7 +109,7 @@ Object.assign(CAT_COLOR, {
   'Marketing': '#d66bd6', 'Matéria prima': '#16a34a', 'Revenda comida': '#f59e0b',
   'Cesta básica': '#16a34a',
   'Manutenção': '#8bb4f3', 'Viagem terrestre': '#6b9cf3', 'Tributo estadual': '#d86f45', 'Tributo sindicato': '#d86f45',
-  'Multa de trânsito': '#d86f45', 'Juros e comissões bancárias': '#778',
+  'Multa de trânsito': '#d86f45', 'Juros / Encargos bancários': '#778',
   'Cheque': '#7b5cf0', 'Outros': '#445566',
 });
 
@@ -3338,3 +3338,4 @@ function resetApp() {
   if (chartC) chartC.destroy(); chartC = null;
   showScreen('upload');
 }
+
